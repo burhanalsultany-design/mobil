@@ -43,7 +43,6 @@
           <label><input type="radio" name="gender" value="male" required> ذكر (Male)</label>
           <label><input type="radio" name="gender" value="female"> أنثى (Female)</label>
   <form id="mainForm">
-
     <!-- SAS-SV -->
     <div class="section" id="sasSection">
       <h2>SAS-SV — مقياس إدمان الهاتف (10 بنود)</h2>
@@ -227,11 +226,6 @@
 
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec"; // your web app
 
-function getValue(form, name){
-  const el = form.querySelector('[name="'+name+'"]:checked');
-  return el ? el.value : null;
-}
-
 function calcPSQIScore(form){
   // We use the 7-component simplified scoring: each s1..s7 already 0-3
   let total = 0;
@@ -279,15 +273,10 @@ document.getElementById('mainForm').addEventListener('submit', async function(e)
     else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
     else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
   } else if(gender === 'female'){
-    if(sasTotal >= 33){ sasTextAR='إدمان مرتفع للهاتف (حسب cutoff للإناث)'; sasTextEN='High smartphone addiction (female cutoff)'; }
-    else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
-    else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
-  } else { // other / unspecified: use conservative cutoff 31
-    if(sasTotal >= 31){ sasTextAR='إدمان مرتفع محتمل للهاتف'; sasTextEN='Possible high smartphone addiction'; }
-    else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
-    else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
-  }
-
+  if(sasTotal >= 33){ sasTextAR='إدمان مرتفع للهاتف (حسب cutoff للإناث)'; sasTextEN='High smartphone addiction (female cutoff)'; }
+  else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
+  else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
+}
   // interpret PSQI
   let psqiTextAR='', psqiTextEN='';
   if(psqiTotal >= 15){ psqiTextAR='اضطراب نوم شديد'; psqiTextEN='Severe sleep disorder'; }
@@ -296,7 +285,12 @@ document.getElementById('mainForm').addEventListener('submit', async function(e)
   else { psqiTextAR='نوم جيد جدًا'; psqiTextEN='Very good sleep'; }
 
   // show on page
-  const resultBox = document.getElementById('resultBox');
+  const resultBox = <script>
+function getValue(form, name){
+  const el = form.querySelector(`[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+document.getElementById('resultBox');
   resultBox.style.display = 'block';
   resultBox.innerHTML = `
     <div style="text-align:center">
