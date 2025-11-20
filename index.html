@@ -3,335 +3,185 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>استبيان: إدمان الهاتف وجودة النوم / Smartphone Addiction & Sleep Quality</title>
+<title>استبيان إدمان الهاتف وجودة النوم</title>
 <style>
-  :root{--accent:#1e90ff;--accent-dark:#1565c0;--bg1:#e6f2ff;--card:#ffffff}
-  body{font-family:Tahoma,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg1),#d6ecff);margin:0;padding:20px;color:#222}
-  .wrap{max-width:980px;margin:18px auto;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.08)}
-  h1,h2{margin:8px 0;text-align:center;color:var(--accent-dark)}
-  .section{margin:16px 0;padding:12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid rgba(0,0,0,0.03)}
-  .q{margin:10px 0;font-weight:700}
-  .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .opts label{background:#f1f6fb;padding:7px 10px;border-radius:8px;cursor:pointer;border:1px solid rgba(0,0,0,0.04)}
-  input[type="radio"]{margin-left:6px}
-  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .small{font-size:0.9rem;color:#555}
-  .actions{text-align:center;margin-top:14px}
-  button{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-size:1rem;cursor:pointer}
-  button:hover{background:var(--accent-dark)}
-  #resultBox{margin-top:14px;padding:12px;border-radius:10px;background:#fafafa;border:1px solid rgba(0,0,0,0.04)}
-  footer{margin-top:16px;text-align:center;color:#444}
-  footer a{color:var(--accent);font-weight:700;text-decoration:none}
-  .meta{font-size:0.9rem;color:#444;margin-bottom:6px}
-  .note{font-size:0.88rem;color:#666;margin-top:8px}
-  @media(max-width:560px){.opts{gap:6px}.wrap{padding:12px}}
+:root{--accent:#1e90ff;--accent-dark:#1565c0;--bg1:#e6f2ff;--card:#ffffff}
+body{font-family:Tahoma,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg1),#d6ecff);margin:0;padding:20px;color:#222}
+.wrap{max-width:980px;margin:18px auto;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.08)}
+h1,h2{text-align:center;color:var(--accent-dark)}
+.section{margin:16px 0;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.04)}
+.q{margin:10px 0;font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.opts label{background:#f1f6fb;padding:9px 18px;border-radius:8px;cursor:pointer;border:1px solid rgba(0,0,0,0.04)}
+input[type="radio"]{margin-left:6px}
+.small{font-size:0.9rem;color:#555}
+.actions{text-align:center;margin-top:14px}
+button{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-size:1rem;cursor:pointer}
+button:hover{background:var(--accent-dark)}
+#resultBox{margin-top:14px;padding:12px;border-radius:10px;background:#fafafa;border:1px solid rgba(0,0,0,0.04);display:none}
+.note{font-size:0.88rem;color:#666;margin-top:8px}
+footer{text-align:center;margin-top:16px}
+footer a{color:var(--accent);font-weight:700;text-decoration:none}
 </style>
 </head>
 <body>
+
 <div class="wrap">
+<h1>استبيان إدمان الهواتف وجودة النوم</h1>
 
-  <h1>استبيان إدمان الهواتف وجودة النوم</h1>
+<form id="mainForm">
 
-  <!-- DEMOGRAPHICS -->
-  <div class="section">
-    <div class="row">
-      <div style="flex:1">
-      </div>
-      <div style="width:180px">
-        <div class="q">الجنس — Gender</div>
-        <div class="opts">
-          <label><input type="radio" name="gender" value="male" required> ذكر (Male)</label>
-          <label><input type="radio" name="gender" value="female"> أنثى (Female)</label>
-  <form id="mainForm">
-    <!-- SAS-SV -->
-    <div class="section" id="sasSection">
-      <h2>SAS-SV — مقياس إدمان الهاتف (10 بنود)</h2>
-      <div class="note">الرجاء اختيار إجابة واحدة لكل بند — 1 = بشدة لا أوافق … 5 = أوافق بشدة</div>
-      <div class="q">1. أُهمِل بعض الأعمال المخططة بسبب استخدامي للهاتف الذكي. <span class="small">Miss planned work due to smartphone use</span></div>
+<!-- الجنس -->
+<div class="section">
+  <div class="q">الجنس — Gender</div>
+  <div class="opts">
+    <label><input type="radio" name="gender" value="male" required> ذكر (Male)</label>
+    <label><input type="radio" name="gender" value="female"> أنثى (Female)</label>
+  </div>
+</div>
+
+<!-- SAS-SV -->
+<div class="section">
+  <h2>SAS-SV — مقياس إدمان الهاتف (10 بنود)</h2>
+  <div class="note">اختر من 1 (لا أوافق بشدة) إلى 5 (أوافق بشدة)</div>
+
+  <!-- QUESTIONS -->
+  <script>
+  const sasQs=[
+    "أُهمِل بعض الأعمال المخططة بسبب استخدامي للهاتف.",
+    "أجد صعوبة في التركيز أثناء الدراسة بسبب استخدام الهاتف.",
+    "أشعر بألم في المعصم أو الرقبة أثناء استخدام الهاتف.",
+    "أشعر بالتوتر عندما لا أكون ممسكًا بالهاتف.",
+    "أفكر في الهاتف حتى عندما لا أستخدمه.",
+    "أقضي وقتًا أطول مما خططت له في استخدام الهاتف.",
+    "يخبرني من حولي أنني أستخدم الهاتف كثيرًا.",
+    "أستخدم الهاتف لفترة أطول مما كنت أنوي.",
+    "أستخدم الهاتف للهروب من المشاعر السلبية.",
+    "أشعر بالقلق عندما أكون بدون الهاتف."
+  ];
+  </script>
+
+  <div id="sasArea"></div>
+
+  <script>
+  let sasHTML="";
+  sasQs.forEach((t,i)=>{
+    sasHTML+=`
+      <div class="q">${i+1}. ${t}</div>
       <div class="opts">
-        <label><input type="radio" name="q1" value="1" required>1</label>
-        <label><input type="radio" name="q1" value="2">2</label>
-        <label><input type="radio" name="q1" value="3">3</label>
-        <label><input type="radio" name="q1" value="4">4</label>
-        <label><input type="radio" name="q1" value="5">5</label>
+        ${[1,2,3,4,5].map(v=>`<label><input type="radio" name="q${i+1}" value="${v}" required>${v}</label>`).join("")}
       </div>
+    `;
+  });
+  document.addEventListener("DOMContentLoaded",()=>document.getElementById("sasArea").innerHTML=sasHTML);
+  </script>
 
-      <div class="q">2. أجد صعوبة في التركيز أثناء الدراسة أو المحاضرة بسبب استخدام الهاتف. <span class="small">Hard to concentrate in class/assignments</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q2" value="1" required>1</label>
-        <label><input type="radio" name="q2" value="2">2</label>
-        <label><input type="radio" name="q2" value="3">3</label>
-        <label><input type="radio" name="q2" value="4">4</label>
-        <label><input type="radio" name="q2" value="5">5</label>
-      </div>
+</div>
 
-      <div class="q">3. أشعر بألم في المعصم أو الرقبة أثناء استخدام الهاتف. <span class="small">Pain in wrist/neck while using</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q3" value="1" required>1</label>
-        <label><input type="radio" name="q3" value="2">2</label>
-        <label><input type="radio" name="q3" value="3">3</label>
-        <label><input type="radio" name="q3" value="4">4</label>
-        <label><input type="radio" name="q3" value="5">5</label>
-      </div>
+<!-- PSQI -->
+<div class="section">
+  <h2>PSQI — مقياس جودة النوم (7 بنود)</h2>
 
-      <div class="q">4. أشعر بالتوتر عندما لا أكون ممسكًا بالهاتف. <span class="small">Impatient/ fretful when not holding phone</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q4" value="1" required>1</label>
-        <label><input type="radio" name="q4" value="2">2</label>
-        <label><input type="radio" name="q4" value="3">3</label>
-        <label><input type="radio" name="q4" value="4">4</label>
-        <label><input type="radio" name="q4" value="5">5</label>
-      </div>
+  <!-- Question Blocks -->
+  <div class="q">1. كيف تُقيّم جودة نومك؟ (0 ممتاز … 3 سيء جدًا)</div>
+  <div class="opts">
+    <label><input type="radio" name="s1" value="0" required>0 ممتاز</label>
+    <label><input type="radio" name="s1" value="1">1 جيد</label>
+    <label><input type="radio" name="s1" value="2">2 سيئ</label>
+    <label><input type="radio" name="s1" value="3">3 سيئ جدًا</label>
+  </div>
+  <div class="q">2. كم دقيقة لتغفو؟</div>
+  <div class="opts">
+    <label><input type="radio" name="s2" value="0" required>0–15</label>
+    <label><input type="radio" name="s2" value="1">16–30</label>
+    <label><input type="radio" name="s2" value="2">31–60</label>
+    <label><input type="radio" name="s2" value="3">>60</label>
+  </div>
+  <div class="q">3. ساعات النوم الفعلية:</div>
+  <div class="opts">
+    <label><input type="radio" name="s3" value="0" required>>7</label>
+    <label><input type="radio" name="s3" value="1">6–7</label>
+    <label><input type="radio" name="s3" value="2">5–6</label>
+    <label><input type="radio" name="s3" value="3"><5</label>
+  </div>
+  <div class="q">4. كفاءة النوم:</div>
+  <div class="opts">
+    <label><input type="radio" name="s4" value="0" required>عالية</label>
+    <label><input type="radio" name="s4" value="1">جيدة</label>
+    <label><input type="radio" name="s4" value="2">قليلة</label>
+    <label><input type="radio" name="s4" value="3">منخفضة جدًا</label>
+  </div>
+  <div class="q">5. اضطرابات النوم (استيقاظ، أحلام...):</div>
+  <div class="opts">
+    <label><input type="radio" name="s5" value="0" required>لم يحدث</label>
+    <label><input type="radio" name="s5" value="1">أقل من مرة</label>
+    <label><input type="radio" name="s5" value="2">1–2 أسبوعيًا</label>
+    <label><input type="radio" name="s5" value="3">≥3 أسبوعيًا</label>
+  </div>
+  <div class="q">6. أدوية النوم:</div>
+  <div class="opts">
+    <label><input type="radio" name="s6" value="0" required>لم يحدث</label>
+    <label><input type="radio" name="s6" value="1">أقل من مرة</label>
+    <label><input type="radio" name="s6" value="2">1–2 أسبوعيًا</label>
+    <label><input type="radio" name="s6" value="3">≥3 أسبوعيًا</label>
+  </div>
+  <div class="q">7. صعوبة البقاء مستيقظًا نهارًا:</div>
+  <div class="opts">
+    <label><input type="radio" name="s7" value="0" required>لم يحدث</label>
+    <label><input type="radio" name="s7" value="1">أقل من مرة</label>
+    <label><input type="radio" name="s7" value="2">1–2 أسبوعيًا</label>
+    <label><input type="radio" name="s7" value="3">≥3 أسبوعيًا</label>
+  </div>
 
-      <div class="q">5. أفكر في الهاتف حتى عندما لا أستخدمه. <span class="small">Think about phone even when not using</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q5" value="1" required>1</label>
-        <label><input type="radio" name="q5" value="2">2</label>
-        <label><input type="radio" name="q5" value="3">3</label>
-        <label><input type="radio" name="q5" value="4">4</label>
-        <label><input type="radio" name="q5" value="5">5</label>
-      </div>
+</div>
 
-      <div class="q">6. أقضي وقتًا أطول مما خططت له في استخدام الهاتف. <span class="small">Spend longer than intended on phone</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q6" value="1" required>1</label>
-        <label><input type="radio" name="q6" value="2">2</label>
-        <label><input type="radio" name="q6" value="3">3</label>
-        <label><input type="radio" name="q6" value="4">4</label>
-        <label><input type="radio" name="q6" value="5">5</label>
-      </div>
+<div class="actions">
+  <button type="submit">إرسال وحساب النتائج</button>
+</div>
+</form>
 
-      <div class="q">7. يخبرني من حولي أنني أستخدم الهاتف كثيرًا. <span class="small">People tell me I use phone too much</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q7" value="1" required>1</label>
-        <label><input type="radio" name="q7" value="2">2</label>
-        <label><input type="radio" name="q7" value="3">3</label>
-        <label><input type="radio" name="q7" value="4">4</label>
-        <label><input type="radio" name="q7" value="5">5</label>
-      </div>
+<div id="resultBox"></div>
 
-      <div class="q">8. أستخدم الهاتف لفترة أطول مما كنت أنوي. <span class="small">On smartphone longer than intended</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q8" value="1" required>1</label>
-        <label><input type="radio" name="q8" value="2">2</label>
-        <label><input type="radio" name="q8" value="3">3</label>
-        <label><input type="radio" name="q8" value="4">4</label>
-        <label><input type="radio" name="q8" value="5">5</label>
-      </div>
-
-      <div class="q">9. أستخدم الهاتف للهروب من المشاعر السلبية أو الواقع. <span class="small">Use phone to escape negative feelings</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q9" value="1" required>1</label>
-        <label><input type="radio" name="q9" value="2">2</label>
-        <label><input type="radio" name="q9" value="3">3</label>
-        <label><input type="radio" name="q9" value="4">4</label>
-        <label><input type="radio" name="q9" value="5">5</label>
-      </div>
-
-      <div class="q">10. أشعر بالقلق عندما أكون بدون الهاتف. <span class="small">Feel anxious when without phone</span></div>
-      <div class="opts">
-        <label><input type="radio" name="q10" value="1" required>1</label>
-        <label><input type="radio" name="q10" value="2">2</label>
-        <label><input type="radio" name="q10" value="3">3</label>
-        <label><input type="radio" name="q10" value="4">4</label>
-        <label><input type="radio" name="q10" value="5">5</label>
-      </div>
-
-      <div class="note">مجاميع SAS-SV تتراوح 10–50. Cut-offs (Kwon 2013): Male ≥31, Female ≥33 — higher = greater smartphone addiction.</div>
-    </div>
-
-    <!-- PSQI (7 components based on standard PSQI items) -->
-    <div class="section" id="psqiSection">
-      <h2>PSQI — مقياس بيتسبرغ لجودة النوم (7 مكوّنات)</h2>
-      <div class="note">الأسئلة التالية تتعلق بالعادات خلال الشهر الماضي. كل بند قيمته 0–3 كما موضح.</div>
-
-      <div class="q">1. كيف تُقيّم جودة نومك بشكل عام؟ <span class="small">(0=ممتاز … 3=سيئ جدًا)</span></div>
-      <div class="opts">
-        <label><input type="radio" name="s1" value="0" required>0 ممتاز / Very good</label>
-        <label><input type="radio" name="s1" value="1">1 جيد / Fairly good</label>
-        <label><input type="radio" name="s1" value="2">2 سيئ / Fairly bad</label>
-        <label><input type="radio" name="s1" value="3">3 سيئ جدًا / Very bad</label>
-      </div>
-
-      <div class="q">2. كم دقيقة عادةً تستغرق حتى تغفو؟ (اختر أقرب فئة)</div>
-      <div class="opts">
-        <label><input type="radio" name="s2" value="0" required>0–15 min</label>
-        <label><input type="radio" name="s2" value="1">16–30 min</label>
-        <label><input type="radio" name="s2" value="2">31–60 min</label>
-        <label><input type="radio" name="s2" value="3">>60 min</label>
-      </div>
-
-      <div class="q">3. كم ساعة تنام فعليًا في الليلة (متوسط)؟</div>
-      <div class="opts">
-        <label><input type="radio" name="s3" value="0" required>>7 ساعات</label>
-        <label><input type="radio" name="s3" value="1">6–7 ساعات</label>
-        <label><input type="radio" name="s3" value="2">5–6 ساعات</label>
-        <label><input type="radio" name="s3" value="3"><5 ساعات</label>
-      </div>
-
-      <div class="q">4. ما زمن النوم الفعلي/كفاءة النوم (بناءً على مواعيد النوم والاستيقاظ)؟ (تقريبًا)</div>
-      <div class="opts">
-        <label><input type="radio" name="s4" value="0" required>كفاءة عالية</label>
-        <label><input type="radio" name="s4" value="1">كفاءة جيدة</label>
-        <label><input type="radio" name="s4" value="2">قليل من الكفاءة</label>
-        <label><input type="radio" name="s4" value="3">كفاءة منخفضة جدًا</label>
-      </div>
-
-      <div class="q">5. خلال الشهر الماضي، كم مرة واجهت اضطرابات نوم (استيقاظ، الحاجة للحمام، أحلام مزعجة، ألم…)؟</div>
-      <div class="opts">
-        <label><input type="radio" name="s5" value="0" required>لم يحدث</label>
-        <label><input type="radio" name="s5" value="1">أقل من مرة أسبوعيًا</label>
-        <label><input type="radio" name="s5" value="2">مرة أو مرتين أسبوعيًا</label>
-        <label><input type="radio" name="s5" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-      </div>
-
-      <div class="q">6. كم مرة تناولت أدوية مساعدة على النوم خلال الشهر الماضي؟</div>
-      <div class="opts">
-        <label><input type="radio" name="s6" value="0" required>لم يحدث</label>
-        <label><input type="radio" name="s6" value="1">أقل من مرة أسبوعيًا</label>
-        <label><input type="radio" name="s6" value="2">مرة أو مرتين أسبوعيًا</label>
-        <label><input type="radio" name="s6" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-      </div>
-
-      <div class="q">7. كم مرة واجهت صعوبة في البقاء مستيقظًا خلال النهار (قيادة/أكل/نشاط اجتماعي)؟</div>
-      <div class="opts">
-        <label><input type="radio" name="s7" value="0" required>لم يحدث</label>
-        <label><input type="radio" name="s7" value="1">أقل من مرة أسبوعيًا</label>
-        <label><input type="radio" name="s7" value="2">مرة أو مرتين أسبوعيًا</label>
-        <label><input type="radio" name="s7" value="3">ثلاث مرات أو أكثر أسبوعيًا</label>
-      </div>
-
-      <div class="note">تفسير مجموع PSQI (المكوّنات): 0–4 = نوم جيد جداً ؛ 5–9 = نوم متوسط ؛ 10–14 = نوم ضعيف ؛ ≥15 = اضطراب نوم شديد.</div>
-    </div>
-
-    <div class="actions">
-      <button type="submit">إرسال وحساب النتائج / Submit</button>
-    </div>
-  </form>
-
-  <div id="resultBox" style="display:none"></div>
-
-  <footer>
-    <div class="note">🔔 اشترك لتصلك أدوات بحث جديدة — Subscribe link below</div>
-    <a href="https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec" target="_blank">اشترك / Subscribe</a>
-  </footer>
+<footer>
+  <div class="note">🔔 اشترك لتصلك أدوات بحث جديدة</div>
+  <a href="https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec" target="_blank">🟦 اشترك / Subscribe</a>
+</footer>
 </div>
 
 <script>
-/*
-  single-file HTML:
-  - sends full item responses, totals and textual results to Google Apps Script Web App
-  - uses gender-specific cutoff for SAS-SV (male >=31, female >=33)
-*/
+const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec";
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec"; // your web app
-
-function calcPSQIScore(form){
-  // We use the 7-component simplified scoring: each s1..s7 already 0-3
-  let total = 0;
-  for(let i=1;i<=7;i++){
-    let v = parseInt(getValue(form,'s'+i));
-    if(isNaN(v)) v = 0;
-    total += v;
-  }
-  return total;
+function getValue(name){
+  const el=document.querySelector(`[name="${name}"]:checked`);
+  return el?parseInt(el.value):null;
 }
 
-function calcSASTotal(form){
-  let total = 0;
-  for(let i=1;i<=10;i++){
-    let v = parseInt(getValue(form,'q'+i));
-    if(isNaN(v)) v = 0;
-    total += v;
-  }
-  return total;
-}
-
-document.getElementById('mainForm').addEventListener('submit', async function(e){
+document.getElementById('mainForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const form = e.target;
 
-  // check required
-  // (browsers will enforce required on each q and s via attributes, but double-check)
-  for(let i=1;i<=10;i++){
-    if(getValue(form,'q'+i) === null){ alert('الرجاء الإجابة على جميع بنود مقياس إدمان الهاتف.'); return; }
-  }
-  for(let i=1;i<=7;i++){
-    if(getValue(form,'s'+i) === null){ alert('الرجاء الإجابة على جميع بنود مقياس جودة النوم.'); return; }
-  }
-  const gender = getValue(form,'gender') || 'other';
-  const name = document.getElementById('name').value || '';
+  // calculate SAS
+  let sas=0;for(let i=1;i<=10;i++) sas+=getValue("q"+i);
 
-  // compute totals
-  const sasTotal = calcSASTotal(form); // 10..50
-  const psqiTotal = calcPSQIScore(form); // 0..21
+  // calculate PSQI
+  let psqi=0;for(let i=1;i<=7;i++) psqi+=getValue("s"+i);
 
-  // interpret SAS with gender-specific cutoff
-  let sasTextEN='', sasTextAR='';
-  if(gender === 'male'){
-    if(sasTotal >= 31){ sasTextAR='إدمان مرتفع للهاتف (حسب cutoff للذكور)'; sasTextEN='High smartphone addiction (male cutoff)'; }
-    else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
-    else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
-  } else if(gender === 'female'){
-  if(sasTotal >= 33){ sasTextAR='إدمان مرتفع للهاتف (حسب cutoff للإناث)'; sasTextEN='High smartphone addiction (female cutoff)'; }
-  else if(sasTotal >= 21){ sasTextAR='استخدام مرتفع/مقلق للهاتف'; sasTextEN='High/problematic use'; }
-  else { sasTextAR='استخدام طبيعي للهاتف'; sasTextEN='Normal smartphone use'; }
-}
-  // interpret PSQI
-  let psqiTextAR='', psqiTextEN='';
-  if(psqiTotal >= 15){ psqiTextAR='اضطراب نوم شديد'; psqiTextEN='Severe sleep disorder'; }
-  else if(psqiTotal >= 10){ psqiTextAR='نوم ضعيف'; psqiTextEN='Poor sleep quality'; }
-  else if(psqiTotal >= 5){ psqiTextAR='نوم متوسط الجودة'; psqiTextEN='Fair sleep quality'; }
-  else { psqiTextAR='نوم جيد جدًا'; psqiTextEN='Very good sleep'; }
+  // interpret
+  let gender=document.querySelector('[name="gender"]:checked')?.value;
+  let sasTxt=(gender==="male"?(sas>=31?"إدمان مرتفع":"طبيعي"):(sas>=33?"إدمان مرتفع":"طبيعي"));
+  let psqiTxt=psqi>=15?"اضطراب شديد":psqi>=10?"نوم ضعيف":psqi>=5?"متوسط":"جيد جدًا";
 
-  // show on page
-  const resultBox = <script>
-function getValue(form, name){
-  const el = form.querySelector(`[name="${name}"]:checked`);
-  return el ? el.value : null;
-}
-document.getElementById('resultBox');
-  resultBox.style.display = 'block';
-  resultBox.innerHTML = `
-    <div style="text-align:center">
-      <div style="font-weight:700;margin-bottom:6px">نتائجك / Your results</div>
-      <div><strong>SAS-SV (مجموع):</strong> ${sasTotal} — ${sasTextAR} <span style="color:#666">(${sasTextEN})</span></div>
-      <div><strong>PSQI (مجموع المكوّنات):</strong> ${psqiTotal} — ${psqiTextAR} <span style="color:#666">(${psqiTextEN})</span></div>
-    </div>
-    <div class="note" style="margin-top:8px;color:#444">ملاحظة: هذه نتائج أولية لأغراض البحث/التوعية وليست تشخيصًا سريريًا.</div>
-  `;
+  // show results
+  let box=document.getElementById("resultBox");
+  box.style.display="block";
+  box.innerHTML=`<b>نتائجك:</b><br>🔵 إدمان الهاتف: ${sas} — ${sasTxt}<br>🟣 جودة النوم: ${psqi} — ${psqiTxt}`;
 
-  // prepare payload: include every item value for full record
-  const payload = {
-    timestamp: new Date().toISOString(),
-    name: name,
-    gender: gender,
-    sas_total: sasTotal,
-    psqi_total: psqiTotal,
-    sas_text_ar: sasTextAR,
-    sas_text_en: sasTextEN,
-    psqi_text_ar: psqiTextAR,
-    psqi_text_en: psqiTextEN,
-    // include all item responses
-    items: {}
-  };
-  for(let i=1;i<=10;i++) payload.items['q'+i] = parseInt(getValue(form,'q'+i));
-  for(let i=1;i<=7;i++) payload.items['s'+i] = parseInt(getValue(form,'s'+i));
-
-  // send to Google Apps Script Web App
-  try {
-    const res = await fetch(WEB_APP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const text = await res.text();
-    console.log('WebApp response:', text);
-  } catch (err) {
-    console.error('Send error:', err);
-    alert('فشل إرسال البيانات إلى الخادم. تأكد من نشر Web App وأن Who has access = Anyone.');
-  }
+  // send to sheet
+  fetch(WEB_APP_URL,{
+    method:"POST",
+    body:JSON.stringify({sas,psqi,gender})
+  });
 });
 </script>
+
 </body>
 </html>
