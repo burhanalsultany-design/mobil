@@ -31,21 +31,17 @@
 <div class="wrap">
 
   <h1>استبيان إدمان الهواتف وجودة النوم</h1>
-  <p class="meta" style="text-align:center">Arabic / English — كامل المقياسين: SAS-SV (10 items) و PSQI (7 components). النتائج تظهر نصياً و تُرسل إلى Google Sheets.</p>
 
   <!-- DEMOGRAPHICS -->
   <div class="section">
     <div class="row">
       <div style="flex:1">
-        <div class="q">الاسم (اختياري) — Name (optional)</div>
-        <input id="name" type="text" placeholder="اسم المشارك / participant name" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd">
       </div>
       <div style="width:180px">
         <div class="q">الجنس — Gender</div>
         <div class="opts">
           <label><input type="radio" name="gender" value="male" required> ذكر (Male)</label>
           <label><input type="radio" name="gender" value="female"> أنثى (Female)</label>
-          <label><input type="radio" name="gender" value="other"> آخر (Other)</label>
         </div>
       </div>
     </div>
@@ -235,7 +231,7 @@
   - uses gender-specific cutoff for SAS-SV (male >=31, female >=33)
 */
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxYTCcpvnUqWLlQ1_XlebFmWYuaEvcPwdc8TElffM-pIknh3mYEprraa957hNrysEkCLA/exec"; // your web app
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxY3hqUdNCnGz6N0_b1KHlQVJCXmlSNCtEMpNJvOo1MhoozlVaR2HE7wyao_EctK3M/exec"; // your web app
 
 function getValue(form, name){
   const el = form.querySelector('[name="'+name+'"]:checked');
